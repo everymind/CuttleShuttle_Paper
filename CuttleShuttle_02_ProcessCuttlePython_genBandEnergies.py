@@ -28,13 +28,6 @@ import argparse
 ###################################
 cwd = os.getcwd()
 ###################################
-# SCRIPT LOGGER
-###################################
-# grab today's date
-now = datetime.datetime.now()
-today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
-logging.basicConfig(filename="process_cuttle_python_01_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
-###################################
 # FUNCTIONS
 ###################################
 
@@ -176,6 +169,13 @@ if __name__=='__main__':
     parser.add_argument("--saveVid", nargs=1, default=False, help="Set to 'True' to save video of bandpass filtered images at each spatial frequency.")
     parser.add_argument("--ROI", nargs=1, default='backOnly', help="Change which part of the video frame to analyse. Options: 'backOnly' (default), 'entireCuttlefish'")
     args = parser.parse_args()
+    ###################################
+    # SCRIPT LOGGER
+    ###################################
+    # grab today's date
+    now = datetime.datetime.now()
+    today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
+    logging.basicConfig(filename="process_cuttle_python_01_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
     ###################################
     # SOURCE DATA AND OUTPUT FILE LOCATIONS 
     ###################################

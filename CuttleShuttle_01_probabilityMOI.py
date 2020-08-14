@@ -8,9 +8,7 @@ Calculate the probability of an MOI happening after 1st, 2nd, or 3rd previous MO
 Used in paper to calculate results section "Accuracy of Prey Capture". 
 
 Optional flags:
-"--display": False (default) or True
-"--saveVid": False (default) or True
-"--ROI": 'backOnly' (default) or 'entireCuttlefish'
+"--mOI": Choose at least one from the following list of MOIs: catches (default), tentacle-shots, orients, homebase
 
 @author: Adam R Kampff and Danbee Kim
 """
@@ -29,13 +27,6 @@ import argparse
 # SET CURRENT WORKING DIRECTORY
 ###################################
 cwd = os.getcwd()
-###################################
-# SCRIPT LOGGER
-###################################
-# grab today's date
-now = datetime.datetime.now()
-today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
-logging.basicConfig(filename="probabilityMOIs_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
 ###################################
 # FUNCTIONS
 ###################################
@@ -172,6 +163,13 @@ if __name__=='__main__':
     parser.add_argument("--a", nargs='?', default="check_string_for_empty")
     parser.add_argument("--MOI", nargs='+', type=str, default='catches', help="Choose at least one from the following list of MOIs: catches (default), tentacle-shots, orients, homebase")
     args = parser.parse_args()
+    ###################################
+    # SCRIPT LOGGER
+    ###################################
+    # grab today's date
+    now = datetime.datetime.now()
+    today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
+    logging.basicConfig(filename="probabilityMOIs_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
     ###################################
     # SOURCE DATA AND OUTPUT FILE LOCATIONS 
     ###################################

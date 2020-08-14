@@ -36,13 +36,6 @@ import scipy.signal
 ###################################
 cwd = os.getcwd()
 ###################################
-# SCRIPT LOGGER
-###################################
-# grab today's date
-now = datetime.datetime.now()
-today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
-logging.basicConfig(filename="process_cuttle_python_04_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
-###################################
 # FUNCTIONS
 ###################################
 ##########################################################
@@ -472,6 +465,13 @@ if __name__=='__main__':
     parser.add_argument("--smoothing_window", nargs='?', default=15, type=int, help="Smoothing window used by scipy.signal.savgol_filter. Default = 15 timebuckets.")
     parser.add_argument("--plot_labels", nargs='?', default=False, help="Set to 'True' to plot event labels in final plots of TSP dynamics.")
     args = parser.parse_args()
+    ###################################
+    # SCRIPT LOGGER
+    ###################################
+    # grab today's date
+    now = datetime.datetime.now()
+    today_dateTime = now.strftime("%Y-%m-%d_%H-%M-%S")
+    logging.basicConfig(filename="process_cuttle_python_04_" + today_dateTime + ".log", filemode='w', level=logging.INFO)
     ###################################
     # SOURCE DATA AND OUTPUT FILE LOCATIONS 
     ###################################
