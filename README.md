@@ -1,4 +1,4 @@
-# The Cuttle Shuttle "Process Cuttle" Python Workflow
+# The Cuttle Shuttle Analysis Code Repository
 
 ## Analysis codebase for *An experimental method for evoking and characterizing dynamic color patterning of cuttlefish during prey capture*
 
