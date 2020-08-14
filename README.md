@@ -20,7 +20,7 @@ Our paper focuses on the "granularity" measure, and uses the "edginess" measure 
 
 1) [Download the full experimental dataset](https://doi.org/10.7910/DVN/DWAWJW) from the Harvard Dataverse. If you don't have enough storage space for the full dataset, [download just the .csv files](https://www.dropbox.com/sh/zzm4kk9iis3cue1/AADCdZU6GV-bMp9tUrIL-glQa?dl=0). 
 
-2) Open file `CuttleShuttle_01_probabilityMOI.py`. Modify variable `dataset_dir` to point to the folder location where you saved the full experimental dataset (or just the `.csv` files). Modify the variable `plots_dir` to a folder where you would like to save the output of this script (`.png` image files). Save the file, then open a development environment set up to run python scripts, navigate to this folder, then run this script by typing ```python CuttleShuttle_01_probabilityMOI.py --MOI catches```` 
+2) Open file `CuttleShuttle_01_probabilityMOI.py`. Modify variable `dataset_dir` to point to the folder location where you saved the full experimental dataset (or just the `.csv` files). Modify the variable `plots_dir` to a folder where you would like to save the output of this script (`.png` image files). Save the file, then open a development environment set up to run python scripts, navigate to this folder, then run this script by typing ```python CuttleShuttle_01_probabilityMOI.py --MOI catches``` 
 
 Type `python CuttleShuttle_01_probabilityMOI.py -h` for more info/options. Note that this script will generate a logfile named `probabilityMOIs_[today's date and time].log`.
 
