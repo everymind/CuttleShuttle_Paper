@@ -4,6 +4,8 @@
 
 This folder contains the entire codebase necessary to replicate the analysis described in the paper "An experimental method for evoking and characterizing dynamic color patterning of cuttlefish during prey capture" by Danbee Kim, Kendra Buresch, Roger Hanlon, and Adam R. Kampff. 
 
+[Download the full primary dataset]() from the Harvard Dataverse.
+
 ## Two Methods of Analysis
 
 This analysis workflow uses two metrics for characterising the "Tentacle Shot Pattern" (TSP), a very brief and highly conspicuous body pattern displayed by cuttlefish just after "tentacles go ballistic" (TGB) during prey capture events, observed both in the lab and in the wild.
@@ -18,7 +20,7 @@ Our paper focuses on the "granularity" measure, and uses the "edginess" measure 
 
 ### To replicate Results section "Accuracy of prey capture":
 
-1) [Download the full experimental dataset](https://doi.org/10.7910/DVN/DWAWJW) from the Harvard Dataverse. If you don't have enough storage space for the full dataset, [download just the .csv files](https://www.dropbox.com/sh/zzm4kk9iis3cue1/AADCdZU6GV-bMp9tUrIL-glQa?dl=0). 
+1) [Download the .csv files](https://www.dropbox.com/sh/zzm4kk9iis3cue1/AADCdZU6GV-bMp9tUrIL-glQa?dl=0) containing the timestamps of various "moments of interest" (MOIs) during the experimental sessions. 
 
 2) Open file `CuttleShuttle_01_probabilityMOI.py`. Modify variable `dataset_dir` to point to the folder location where you saved the full experimental dataset (or just the `.csv` files). Modify the variable `plots_dir` to a folder where you would like to save the output of this script (`.png` image files). Save the file, then open a development environment set up to run python scripts, navigate to this folder, then run this script by typing ```python CuttleShuttle_01_probabilityMOI.py --MOI catches```. Type `python CuttleShuttle_01_probabilityMOI.py -h` for more info/options. Note that this script will generate a logfile named `probabilityMOIs_[today's date and time].log`.
 
