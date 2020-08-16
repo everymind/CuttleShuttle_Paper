@@ -2,7 +2,7 @@
 
 ## Analysis codebase for *An experimental method for evoking and characterizing dynamic color patterning of cuttlefish during prey capture*
 
-This folder contains the entire codebase necessary to replicate the analysis described in the paper "An experimental method for evoking and characterizing dynamic color patterning of cuttlefish during prey capture" by Danbee Kim, Kendra Buresch, Roger Hanlon, and Adam R. Kampff. 
+This folder contains the entire codebase necessary to replicate the analysis described in the paper ["An experimental method for evoking and characterizing dynamic color patterning of cuttlefish during prey capture" by Danbee Kim, Kendra Buresch, Roger Hanlon, and Adam R. Kampff](publication link coming soon!). 
 
 [Download the full primary dataset](Coming soon!) from the Harvard Dataverse.
 
