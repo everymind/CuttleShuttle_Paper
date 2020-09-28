@@ -73,10 +73,18 @@ def computeFilteredVid(N_frames, N_bands, TS_video, TS_video_path, crop_roi, ban
     # Measure ROI size
     roi_width = crop_roi[2] - crop_roi[0]
     roi_height = crop_roi[3] - crop_roi[1]
+    if save_bool:
+        # setup output video
+        output_video_name = os.path.basename(TS_video_path)[:-4] + "_filteredVid.avi"
+        output_video_path = os.path.join(save_folder, output_video_name)
+        output_video_size = (1280, 400)
+        fourcc = cv2.VideoWriter_fourcc('F','M','P','4')
+        output_video = cv2.VideoWriter(output_video_path, fourcc, 60, output_video_size, False)
     # Loop through all frames of TS_video and process
+    #N_frames = 60 # ...for debugging
     band_energies = np.zeros((N_frames, N_bands))
-    #N_frames = 50 # ...for debugging
     for frame in range(0, N_frames):
+        #print('Processing frame {f}'.format(f=frame)) # ... for debugging
         # Read current frame
         success, image = TS_video.read()
         # Convert to grayscale
@@ -98,12 +106,6 @@ def computeFilteredVid(N_frames, N_bands, TS_video, TS_video_path, crop_roi, ban
         band_energies[frame, :] = band_energy / sum(band_energy)
         # If displaying or saving, compute filtered images via inverse FFT
         if display_bool or save_bool:
-            # setup output video
-            output_video_name = os.path.basename(TS_video_path)[:-4] + "_filteredVid.avi"
-            output_video_path = os.path.join(save_folder, output_video_name)
-            output_video_size = (1280, 400)
-            fourcc = cv2.VideoWriter_fourcc('F','M','P','4')
-            output_video = cv2.VideoWriter(output_video_path, fourcc, 30, output_video_size, False)
             # load output frames
             filtered_images = np.zeros((roi_width, roi_height * (N_bands + 1)))
             filtered_images[:, 0:roi_height] = crop.T/255
