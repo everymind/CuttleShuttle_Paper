@@ -218,7 +218,7 @@ if __name__=='__main__':
         height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
         num_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
         # Generate band masks
-        NumBands = 7
+        NumBands = 9
         BandMasks = genBandMasks(NumBands, CropRoi)
         # If displaying, open display window
         if display:
