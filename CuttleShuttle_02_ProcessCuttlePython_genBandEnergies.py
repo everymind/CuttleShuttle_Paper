@@ -143,7 +143,10 @@ def computeFilteredVid(N_frames, N_bands, TS_video, TS_video_path, crop_roi, ban
     plt.figure(figsize=(16,8), dpi=200)
     plt.suptitle(figure_title, fontsize=12, y=0.99)
     plt.plot(band_energies)
-    labels = ['band 0', 'band 1','band 2','band 3','band 4','band 5','band 6']
+    labels = []
+    for band in range(N_bands):
+        label = 'band {b}'.format(b=band)
+        labels.append(label)
     plt.legend(labels)
     plt.ylabel('Power')
     plt.xlabel('Frame number')
@@ -223,6 +226,8 @@ if __name__=='__main__':
         # If displaying, open display window
         if display:
             cv2.namedWindow("Display")
+        logging.info('Computing filtered video of {v}'.format(v=os.path.basename(video_path)))
+        print('Computing filtered video of {v}'.format(v=os.path.basename(video_path)))
         computeFilteredVid(num_frames, NumBands, video, video_path, CropRoi, BandMasks, display, save, plots_folder)
         video.release()
 
