@@ -1150,11 +1150,19 @@ if __name__=='__main__':
             print('Plotting shuffle tests of {p} data...'.format(p=preprocess_type))
             if preprocess_type == 'Percent_Change':
                 for freq_band in firstCrossing_P005sig:
-                    logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
-                    print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
+                    if firstCrossing_P005sig[freq_band] is None:
+                        logging.info('Difference between catches and misses never becomes significant')
+                        print('Difference between catches and misses never becomes significant')
+                    else:
+                        logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
+                        print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
                 plot_allA_allFreq_ShuffledDiffMeans('ProcessCuttlePython', preprocess_type, 'power at frequency', 'all', preprocessed_data_to_shuffleTest[preprocess_type][0], preprocessed_data_to_shuffleTest[preprocess_type][1], pw005sig_UB, pw005sig_LB, global005sig_UB, global005sig_LB, shuff_DiffMeans, firstCrossing_P005sig, TGB_bucket_raw, baseline_frames, plots_folder, today_dateTime, args.plot_labels)
             if 'ZScored' in preprocess_type:
-                logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[preprocess_type]/60)-3))
-                print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[preprocess_type]/60)-3))
+                if firstCrossing_P005sig[preprocess_type] is None: 
+                    logging.info('Difference between catches and misses never becomes significant')
+                    print('Difference between catches and misses never becomes significant')
+                else:
+                    logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[preprocess_type]/60)-3))
+                    print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[preprocess_type]/60)-3))
                 plot_allA_Canny_ShuffledDiffMeans('CannyEdgeDetector', preprocess_type, 'edge counts', 'all', preprocessed_data_to_shuffleTest[preprocess_type][0], preprocessed_data_to_shuffleTest[preprocess_type][1], pw005sig_UB[preprocess_type], pw005sig_LB[preprocess_type], global005sig_UB[preprocess_type], global005sig_LB[preprocess_type], shuff_DiffMeans[preprocess_type], firstCrossing_P005sig[preprocess_type], TGB_bucket_raw, baseline_buckets, plots_folder, today_dateTime, args.plot_labels)
 # FIN
