@@ -492,7 +492,11 @@ def plot_allA_allFreq_ShuffledDiffMeans(analysis_type_str, preprocess_str, metri
         # set fig path and title
         figure_name = analysis_type_str +'_'+ preprocess_str +'_'+ prey_type_str + 'Trials_AllAnimals_Freq'+str(freq_band)+'_' + todays_dt + img_type[0]
         figure_path = os.path.join(plots_dir, figure_name)
-        figure_title = preprocess_str + ', mean change from baseline of {m} in ROI on cuttlefish mantle during tentacle shots, as detected by {at}, Frequency Band {fb}\n Baseline: mean of {m} from t=0 to t={b} seconds \n Prey Movement type: {p}, Pooled across all animals\n Number of catches: {Nc}, Number of misses: {Nm}'.format(m=metric_str, at=analysis_type_str, fb=freq_band, b=str(baseline_len/60), p=prey_type_str, a=animal, Nc=str(allA_C_N[0]), Nm=str(allA_M_N[0]))
+        if firstSigFrame[freq_band] is None:
+            diff_str = "Difference between catches and misses never becomes significant"
+        else:
+            diff_str = "Difference between catches and misses becomes significant at {s:.2f} seconds after TGB".format(s=(firstSigFrame[freq_band]/60)-3)
+        figure_title = preprocess_str + ', mean change from baseline of {m} in ROI on cuttlefish mantle during tentacle shots, as detected by {at}, Frequency Band {fb}\n Baseline: mean of {m} from t=0 to t={b} seconds \n Prey Movement type: {p}, Pooled across all animals\n Number of catches: {Nc}, Number of misses: {Nm} \n {diff}'.format(m=metric_str, at=analysis_type_str, fb=freq_band, b=str(baseline_len/60), p=prey_type_str, a=animal, Nc=str(allA_C_N[0]), Nm=str(allA_M_N[0]), diff=diff_str)
         # draw fig
         plt.figure(figsize=(16,16), dpi=200)
         plt.suptitle(figure_title, fontsize=12, y=0.99)
@@ -1151,11 +1155,11 @@ if __name__=='__main__':
             if preprocess_type == 'Percent_Change':
                 for freq_band in firstCrossing_P005sig:
                     if firstCrossing_P005sig[freq_band] is None:
-                        logging.info('Difference between catches and misses never becomes significant')
-                        print('Difference between catches and misses never becomes significant')
+                        logging.info('Difference between catches and misses never becomes significant in frequency band {f}'.format(f=freq_band))
+                        print('Difference between catches and misses never becomes significant in frequency band {f}'.format(f=freq_band))
                     else:
-                        logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
-                        print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB'.format(s=(firstCrossing_P005sig[freq_band]/60)-3))
+                        logging.info('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB in frequency band {f}'.format(s=(firstCrossing_P005sig[freq_band]/60)-3), f=freq_band)
+                        print('Difference between catches and misses becomes significant at {s:.2f} seconds after TGB in frequency band {f}'.format(s=(firstCrossing_P005sig[freq_band]/60)-3), f=freq_band)
                 plot_allA_allFreq_ShuffledDiffMeans('ProcessCuttlePython', preprocess_type, 'power at frequency', 'all', preprocessed_data_to_shuffleTest[preprocess_type][0], preprocessed_data_to_shuffleTest[preprocess_type][1], pw005sig_UB, pw005sig_LB, global005sig_UB, global005sig_LB, shuff_DiffMeans, firstCrossing_P005sig, TGB_bucket_raw, baseline_frames, plots_folder, today_dateTime, args.plot_labels)
             if 'ZScored' in preprocess_type:
                 if firstCrossing_P005sig[preprocess_type] is None: 
